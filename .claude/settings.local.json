@@ -1,0 +1,22 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(cd \"D:/SideHustle/aus-news-claude/backend\" && dotnet new webapi -n AusNews --no-https 2>&1 | tail -5)",
+      "Bash(cd \"D:/SideHustle/aus-news-claude/frontend\" && npx create-vite@latest . --template react-ts 2>&1 | tail -10)",
+      "Bash(cd \"D:/SideHustle/aus-news-claude/frontend\" && npm install 2>&1 | tail -5)",
+      "Bash(cd \"D:/SideHustle/aus-news-claude/backend\" && dotnet new xunit -n AusNews.Tests 2>&1 | tail -5)",
+      "Bash(cd \"D:/SideHustle/aus-news-claude/frontend\" && npm install framer-motion @tanstack/react-query 2>&1 | tail -3)",
+      "Bash(cd \"D:/SideHustle/aus-news-claude/backend/AusNews.Tests\" && dotnet add reference ../AusNews/AusNews.csproj 2>&1 && dotnet add package Moq 2>&1 | tail -3 && dotnet add package Microsoft.AspNetCore.Mvc.Testing 2>&1 | tail -3 && dotnet add package Microsoft.Extensions.Caching.Memory 2>&1 | tail -3)",
+      "Bash(cd \"D:/SideHustle/aus-news-claude/frontend\" && npm install -D vitest @testing-library/react @testing-library/jest-dom @testing-library/user-event jsdom eslint @eslint/js typescript-eslint @vitejs/plugin-react 2>&1 | tail -3)",
+      "Bash(cd \"D:/SideHustle/aus-news-claude/backend/AusNews.Tests\" && dotnet add package Microsoft.AspNetCore.Mvc.Testing --version \"9.*\" 2>&1 | tail -3)",
+      "Bash(cd \"D:/SideHustle/aus-news-claude/backend\" && dotnet test AusNews.Tests/AusNews.Tests.csproj --verbosity normal 2>&1)",
+      "Bash(cd \"D:/SideHustle/aus-news-claude/frontend\" && npx vitest run 2>&1)",
+      "Bash(cd \"D:/SideHustle/aus-news-claude/frontend\" && rm -rf node_modules package-lock.json && npm install 2>&1 | tail -5)",
+      "Bash(cd \"D:/SideHustle/aus-news-claude/frontend\" && npm install vite@6 @vitejs/plugin-react@4 vitest@2 2>&1 | tail -5)",
+      "Bash(cd \"D:/SideHustle/aus-news-claude/frontend\" && npm install -D jsdom@24 2>&1 | tail -3)",
+      "Bash(cd \"D:/SideHustle/aus-news-claude/frontend\" && npx eslint . 2>&1)",
+      "Bash(cd \"D:/SideHustle/aus-news-claude/frontend\" && npx tsc -b 2>&1)",
+      "Bash(cd \"D:/SideHustle/aus-news-claude/backend\" && dotnet new sln -n AusNews 2>&1 && dotnet sln add AusNews/AusNews.csproj AusNews.Tests/AusNews.Tests.csproj 2>&1)"
+    ]
+  }
+}

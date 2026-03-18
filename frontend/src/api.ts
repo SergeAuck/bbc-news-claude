@@ -1,6 +1,6 @@
 import type { NewsApiResponse } from "./types";
 
-const API_BASE = import.meta.env.VITE_API_URL || "http://localhost:5000";
+const API_BASE = import.meta.env.VITE_API_URL || "http://localhost:5262";
 
 export async function fetchNews(): Promise<NewsApiResponse> {
   const response = await fetch(`${API_BASE}/api/news`);

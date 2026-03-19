@@ -1,0 +1,6 @@
+bin/
+obj/
+AusNews.Tests/
+AusNews.sln
+*.user
+.vs/

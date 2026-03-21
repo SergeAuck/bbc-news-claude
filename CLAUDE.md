@@ -16,9 +16,11 @@ A full-stack app that displays top BBC News headlines using NewsAPI.org. Backend
 ```
 backend/
   AusNews/              # Main API project
-    Program.cs          # Minimal API setup, single endpoint /api/news
+    Program.cs          # Minimal API setup, endpoints: /api/news, /health/live, /health/ready
     Services/NewsService.cs  # Fetches from NewsAPI with IMemoryCache (3 min TTL)
     Models/NewsResponse.cs   # DTOs: NewsApiResponse, Article, Source
+    Health/NewsApiHealthCheck.cs    # Readiness check: verifies NewsAPI connectivity + key config
+    Health/HealthCheckResponseWriter.cs  # JSON response formatter for /health/ready
     Dockerfile          # Multi-stage build: SDK → aspnet runtime (port 8080)
   .dockerignore
   AusNews.Tests/        # xUnit tests (5 tests: unit + integration)
@@ -84,9 +86,14 @@ docker compose up --build
 
 ## Key Dependencies
 
-- **Backend**: Microsoft.Extensions.Caching.Memory (in-memory cache)
+- **Backend**: Microsoft.Extensions.Caching.Memory (in-memory cache), Microsoft.Extensions.Diagnostics.HealthChecks
 - **Frontend**: framer-motion (animations), @tanstack/react-query (data fetching + client-side cache)
 - **Test**: Moq, Microsoft.AspNetCore.Mvc.Testing, vitest, @testing-library/react, jsdom@24
+
+## Health Checks
+
+- **`/health/live`** — Liveness probe. Returns 200 if the app is running. No dependency checks. Use for container orchestrators (K8s, ECS) to know the process is alive.
+- **`/health/ready`** — Readiness probe. Checks NewsAPI connectivity and API key configuration. Returns JSON with per-check status, duration, and errors. Use to verify the app can serve traffic.
 
 ## Known Issues / Notes
 

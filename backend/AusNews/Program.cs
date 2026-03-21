@@ -1,4 +1,5 @@
 using AusNews.Services;
+using AusNews.Health;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -17,6 +18,8 @@ builder.Services.AddCors(options =>
     });
 });
 builder.Services.AddOpenApi();
+builder.Services.AddHealthChecks()
+    .AddCheck<NewsApiHealthCheck>("newsapi");
 
 var app = builder.Build();
 
@@ -26,6 +29,15 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseCors();
+
+app.MapHealthChecks("/health/live", new Microsoft.AspNetCore.Diagnostics.HealthChecks.HealthCheckOptions
+{
+    Predicate = _ => false
+});
+app.MapHealthChecks("/health/ready", new Microsoft.AspNetCore.Diagnostics.HealthChecks.HealthCheckOptions
+{
+    ResponseWriter = HealthCheckResponseWriter.WriteResponse
+});
 
 app.MapGet("/api/news", async (INewsService newsService) =>
 {

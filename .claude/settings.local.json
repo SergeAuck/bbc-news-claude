@@ -16,7 +16,8 @@
       "Bash(cd \"D:/SideHustle/aus-news-claude/frontend\" && npm install -D jsdom@24 2>&1 | tail -3)",
       "Bash(cd \"D:/SideHustle/aus-news-claude/frontend\" && npx eslint . 2>&1)",
       "Bash(cd \"D:/SideHustle/aus-news-claude/frontend\" && npx tsc -b 2>&1)",
-      "Bash(cd \"D:/SideHustle/aus-news-claude/backend\" && dotnet new sln -n AusNews 2>&1 && dotnet sln add AusNews/AusNews.csproj AusNews.Tests/AusNews.Tests.csproj 2>&1)"
+      "Bash(cd \"D:/SideHustle/aus-news-claude/backend\" && dotnet new sln -n AusNews 2>&1 && dotnet sln add AusNews/AusNews.csproj AusNews.Tests/AusNews.Tests.csproj 2>&1)",
+      "Bash(dotnet test:*)"
     ]
   }
 }
